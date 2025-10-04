@@ -17,7 +17,10 @@ const NavBar = () => {
   const scrollToSection = (id) => {
     const section = document.getElementById(id);
     if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
+      const yOffset = -80; // Adjust this value based on navbar height
+      const y =
+        section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
     }
     setMenuOpen(false);
   };
@@ -31,6 +34,8 @@ const NavBar = () => {
     },
     exit: { opacity: 0, y: -40, transition: { duration: 0.3 } },
   };
+
+  const sections = ["home", "products", "services", "about", "contact"];
 
   return (
     <nav
@@ -55,15 +60,13 @@ const NavBar = () => {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8 lg:space-x-10">
-            {["home", "products", "services", "about", "contact"].map(
-              (section) => (
-                <NavItem
-                  key={section}
-                  label={section.charAt(0).toUpperCase() + section.slice(1)}
-                  onClick={() => scrollToSection(section)}
-                />
-              )
-            )}
+            {sections.map((section) => (
+              <NavItem
+                key={section}
+                label={section.charAt(0).toUpperCase() + section.slice(1)}
+                onClick={() => scrollToSection(section)}
+              />
+            ))}
           </div>
 
           {/* Mobile Menu Button */}
@@ -88,15 +91,13 @@ const NavBar = () => {
             exit="exit"
           >
             <div className="flex flex-col px-5 py-6 space-y-4 text-center">
-              {["home", "about", "products", "services", "contact"].map(
-                (section) => (
-                  <NavItem
-                    key={section}
-                    label={section.charAt(0).toUpperCase() + section.slice(1)}
-                    onClick={() => scrollToSection(section)}
-                  />
-                )
-              )}
+              {sections.map((section) => (
+                <NavItem
+                  key={section}
+                  label={section.charAt(0).toUpperCase() + section.slice(1)}
+                  onClick={() => scrollToSection(section)}
+                />
+              ))}
             </div>
           </motion.div>
         )}

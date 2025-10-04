@@ -7,6 +7,8 @@ import Services from "./components/Services";
 import CallToAction from "./components/CallToAction";
 import Footer from "./components/Footer";
 import LoadingScreen from "./pages/LoadingScreen";
+import Contact from "./components/Contact";
+import About from "./components/About";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -30,6 +32,8 @@ const App = () => {
           <Products />
           <Services />
           <CallToAction />
+          <About />
+          <Contact />
           <Footer />
         </div>
       )}
