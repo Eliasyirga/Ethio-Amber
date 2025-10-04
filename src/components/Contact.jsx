@@ -1,136 +1,90 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { useMediaQuery } from "react-responsive";
+import { FaCheckCircle } from "react-icons/fa";
 
 const Contact = () => {
-  const isDesktop = useMediaQuery({ minWidth: 768 });
-
   return (
-    <section
-      id="contact"
-      className="relative min-h-screen bg-gradient-to-b from-[#3E2723] to-[#1B1B1B] py-20 px-6 sm:px-12"
-    >
-      {/* Section Heading */}
-      {isDesktop ? (
-        <motion.h2
-          className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center text-amber-500 mb-12 sm:mb-16 tracking-wider drop-shadow-lg"
-          initial={{ y: -30, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6 }}
-        >
-          Get in Touch
-        </motion.h2>
-      ) : (
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center text-amber-500 mb-12 sm:mb-16 tracking-wider drop-shadow-lg">
-          Get in Touch
-        </h2>
-      )}
+    <section className="relative min-h-screen bg-gradient-to-b from-[#3E2723] to-[#1B1B1B] py-16 sm:py-24 px-4 sm:px-12 overflow-hidden">
+      {/* Decorative glowing background circles */}
+      <div className="absolute -top-40 -left-40 w-72 sm:w-96 h-72 sm:h-96 bg-amber-500/10 blur-3xl rounded-full" />
+      <div className="absolute bottom-0 right-0 w-64 sm:w-80 h-64 sm:h-80 bg-amber-600/10 blur-3xl rounded-full" />
 
-      <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-start">
-        {/* Info Side */}
-        {isDesktop ? (
-          <motion.div
-            initial={{ x: -40, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.7 }}
-            className="space-y-6 text-gray-200"
-          >
-            <ContactInfo />
-          </motion.div>
-        ) : (
-          <div className="space-y-6 text-gray-200">
-            <ContactInfo />
-          </div>
-        )}
+      {/* --- Competitive Advantage Section --- */}
+      <motion.div
+        className="max-w-6xl mx-auto text-gray-200 relative"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        {/* Section Heading */}
+        <div className="text-center mb-10 sm:mb-14 relative z-20">
+          <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-amber-400 tracking-wide relative inline-block">
+            Why Choose Ethio Amber Trading?
+            {/* Animated gradient underline */}
+            <motion.div
+              className="absolute left-1/2 -bottom-3 w-24 sm:w-32 h-[3px] bg-gradient-to-r from-amber-400 via-orange-500 to-amber-400 rounded-full -translate-x-1/2"
+              animate={{ opacity: [0.5, 1, 0.5] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            />
+          </h3>
+        </div>
 
-        {/* Contact Form */}
-        {isDesktop ? (
-          <motion.form
-            initial={{ x: 40, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.7 }}
-            className="bg-white/10 backdrop-blur-xl border border-white/10 rounded-3xl shadow-xl p-6 sm:p-8 flex flex-col space-y-4"
-          >
-            <ContactForm />
-          </motion.form>
-        ) : (
-          <form className="bg-white/10 backdrop-blur-xl border border-white/10 rounded-3xl shadow-xl p-6 sm:p-8 flex flex-col space-y-4">
-            <ContactForm />
-          </form>
-        )}
-      </div>
+        {/* Timeline line for desktop */}
+        <div className="hidden md:block absolute left-1/2 top-[6rem] bottom-0 w-[2px] bg-gradient-to-b from-amber-400/40 to-transparent"></div>
+
+        {/* Timeline Cards */}
+        <div className="flex flex-col gap-6 sm:gap-8 relative">
+          {advantages.map((adv, i) => (
+            <motion.div
+              key={i}
+              className={`relative flex flex-col md:flex-row items-start md:items-start ${
+                i % 2 === 0 ? "md:justify-start" : "md:justify-end"
+              }`}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.1 }}
+            >
+              {/* Connector dot (desktop only) */}
+              <div className="hidden md:flex absolute left-1/2 -translate-x-1/2">
+                <div className="relative">
+                  <FaCheckCircle className="text-amber-400 text-2xl bg-[#1B1B1B] rounded-full p-1 shadow-[0_0_15px_rgba(251,191,36,0.4)]" />
+                  <span className="absolute inset-0 animate-ping bg-amber-500/30 rounded-full" />
+                </div>
+              </div>
+
+              {/* Card */}
+              <motion.div
+                whileHover={{ scale: 1.03 }}
+                transition={{ type: "spring", stiffness: 200, damping: 10 }}
+                className={`relative group bg-gradient-to-br from-[#4a2c24]/60 to-[#2e1b16]/60 border border-white/10 backdrop-blur-md p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl shadow-md hover:shadow-amber-500/20 transition-all duration-300 w-full md:w-[45%] ${
+                  i % 2 === 0 ? "md:mr-auto" : "md:ml-auto"
+                }`}
+              >
+                <div className="flex items-start gap-3">
+                  <FaCheckCircle className="text-amber-400 mt-1 flex-shrink-0 md:hidden" />
+                  <p className="text-sm sm:text-base md:text-lg leading-relaxed text-gray-100">
+                    {adv}
+                  </p>
+                </div>
+                {/* Subtle inner glow effect */}
+                <div className="absolute inset-0 rounded-2xl sm:rounded-3xl opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-r from-amber-500/5 to-transparent blur-md" />
+              </motion.div>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
     </section>
   );
 };
 
-// Info section
-const ContactInfo = () => (
-  <>
-    <h3 className="text-2xl sm:text-3xl font-bold text-white">
-      We’d love to hear from you
-    </h3>
-    <p className="leading-relaxed text-gray-300">
-      Whether you’re interested in our products, want to collaborate, or just
-      have a question — feel free to reach out. We’ll respond as quickly as
-      possible.
-    </p>
-    <div className="space-y-3 text-sm sm:text-base">
-      <p>
-        <span className="font-semibold">Address:</span> Addis Ababa, Ethiopia
-      </p>
-      <p>
-        <span className="font-semibold">Phone:</span> +251 900 123 456
-      </p>
-      <p>
-        <span className="font-semibold">Email:</span> contact@company.com
-      </p>
-    </div>
-  </>
-);
-
-// Form fields
-const ContactForm = () => (
-  <>
-    <div>
-      <label className="block text-sm font-semibold text-gray-200 mb-2">
-        Name
-      </label>
-      <input
-        type="text"
-        placeholder="Your name"
-        className="w-full px-4 py-3 rounded-lg bg-white/5 text-white border border-white/20 focus:outline-none focus:border-amber-500 transition"
-      />
-    </div>
-
-    <div>
-      <label className="block text-sm font-semibold text-gray-200 mb-2">
-        Email
-      </label>
-      <input
-        type="email"
-        placeholder="Your email"
-        className="w-full px-4 py-3 rounded-lg bg-white/5 text-white border border-white/20 focus:outline-none focus:border-amber-500 transition"
-      />
-    </div>
-
-    <div>
-      <label className="block text-sm font-semibold text-gray-200 mb-2">
-        Message
-      </label>
-      <textarea
-        rows="4"
-        placeholder="Write your message..."
-        className="w-full px-4 py-3 rounded-lg bg-white/5 text-white border border-white/20 focus:outline-none focus:border-amber-500 transition"
-      ></textarea>
-    </div>
-
-    <button
-      type="submit"
-      className="w-full bg-amber-500 text-black font-bold py-3 rounded-lg shadow-md hover:bg-amber-400 transition"
-    >
-      Send Message
-    </button>
-  </>
-);
+// Advantage points
+const advantages = [
+  "Direct sourcing from farmers and cooperatives ensuring traceability and fair trade.",
+  "Strict quality control and grading that guarantees international compliance.",
+  "Competitive pricing driven by efficient supply chains and strong sourcing networks.",
+  "Sustainable and ethical sourcing practices that empower farmers and protect the environment.",
+  "Reliable logistics and documentation support to ensure smooth international trade operations.",
+  "Experience and expertise in navigating global commodity trade standards and certifications.",
+];
 
 export default Contact;

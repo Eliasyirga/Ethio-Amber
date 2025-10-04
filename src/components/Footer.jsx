@@ -1,11 +1,12 @@
 import React from "react";
 import {
-  Twitter,
+  Facebook,
   Instagram,
   Linkedin,
-  Github,
   Youtube,
-  Facebook,
+  Mail,
+  MapPin,
+  Phone,
 } from "lucide-react";
 
 const Footer = () => {
@@ -15,39 +16,44 @@ const Footer = () => {
   };
 
   return (
-    <footer className="relative bg-gradient-to-t from-[#3E2723] to-[#1B1B1B] py-16 px-6 sm:px-8 md:px-12 overflow-hidden">
-      {/* Subtle background blobs */}
-      <div className="absolute -top-32 -left-32 w-72 sm:w-96 h-72 sm:h-96 bg-amber-500/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-0 w-64 sm:w-80 h-64 sm:h-80 bg-amber-500/10 rounded-full blur-3xl" />
+    <footer
+      id="contact"
+      className="relative bg-gradient-to-t from-[#1B1B1B] via-[#2C1A14] to-[#3E2723] py-16 sm:py-20 px-4 sm:px-10 md:px-16 overflow-hidden"
+    >
+      {/* Animated background orbs */}
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute -top-32 -left-16 w-72 sm:w-96 h-72 sm:h-96 bg-amber-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-0 right-0 w-64 sm:w-80 h-64 sm:h-80 bg-amber-400/10 rounded-full blur-3xl animate-pulse delay-500" />
+      </div>
 
-      {/* Glassmorphic content container */}
-      <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-10 backdrop-blur-md bg-white/5 border border-white/10 rounded-3xl p-8 sm:p-10 shadow-lg">
-        {/* Company Info */}
-        <div className="space-y-4 text-center sm:text-left">
-          <h2 className="text-2xl sm:text-3xl font-bold text-amber-500">
+      {/* Main content */}
+      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-10 md:gap-14 backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl sm:rounded-3xl p-6 sm:p-10 shadow-[0_8px_25px_rgba(0,0,0,0.2)]">
+        {/* Brand Info */}
+        <div>
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-amber-500 mb-3 sm:mb-4 tracking-wide">
             Ethio Amber
           </h2>
-          <p className="text-gray-300 text-sm sm:text-base">
-            Premium Ethiopian products for global markets. We ensure quality,
-            sustainability, and reliable export services worldwide.
+          <p className="text-gray-300 text-xs sm:text-sm md:text-base leading-relaxed">
+            Delivering Ethiopia’s finest agricultural and natural products to
+            global markets — sustainably and ethically.
           </p>
         </div>
 
         {/* Quick Links */}
-        <div className="text-center sm:text-left">
-          <h3 className="text-lg font-semibold text-amber-500 mb-4">
+        <div>
+          <h3 className="text-base sm:text-lg font-semibold text-amber-400 mb-3 sm:mb-4">
             Quick Links
           </h3>
-          <ul className="space-y-2 sm:space-y-3 text-gray-300">
+          <ul className="space-y-2 text-gray-300 text-sm sm:text-base">
             {[
               { label: "Home", id: "home" },
               { label: "Products", id: "products" },
-              { label: "About Us", id: "about" },
+              { label: "About", id: "about" },
               { label: "Contact", id: "contact" },
             ].map((link) => (
               <li
                 key={link.id}
-                className="hover:text-amber-400 transition cursor-pointer text-sm sm:text-base"
+                className="hover:text-amber-400 cursor-pointer transition-colors duration-300"
                 onClick={() => scrollToSection(link.id)}
               >
                 {link.label}
@@ -56,19 +62,45 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Social Links */}
-        <div className="text-center sm:text-left">
-          <h3 className="text-lg font-semibold text-amber-500 mb-4">
+        {/* Contact Info */}
+        <div>
+          <h3 className="text-base sm:text-lg font-semibold text-amber-400 mb-3 sm:mb-4">
+            Contact Us
+          </h3>
+          <ul className="space-y-2 sm:space-y-3 text-gray-300 text-sm sm:text-base">
+            <li className="flex items-center gap-2 sm:gap-3">
+              <MapPin className="w-4 h-4 text-amber-400" />
+              Addis Ababa, Ethiopia
+            </li>
+            <li className="flex items-center gap-2 sm:gap-3">
+              <Phone className="w-4 h-4 text-amber-400" /> +251 911 572 382
+            </li>
+            <li className="flex items-center gap-2 sm:gap-3">
+              <Mail className="w-4 h-4 text-amber-400" />
+              <a
+                href="mailto:netsanetyrg@gmail.com"
+                className="hover:text-amber-400 transition-colors"
+              >
+                netsanetyrg@gmail.com
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        {/* Social Media */}
+        <div>
+          <h3 className="text-base sm:text-lg font-semibold text-amber-400 mb-3 sm:mb-4">
             Follow Us
           </h3>
-          <div className="flex justify-center sm:justify-start gap-5 sm:gap-6">
-            {[Facebook, Youtube, Instagram, Linkedin].map((Icon, i) => (
+          <div className="flex justify-center sm:justify-start gap-4 sm:gap-5">
+            {[Facebook, Instagram, Linkedin, Youtube].map((Icon, i) => (
               <a
                 key={i}
                 href="#"
-                className="text-gray-300 hover:text-amber-400 transition transform hover:-translate-y-0.5"
+                className="relative group text-gray-300 hover:text-amber-400 transition transform hover:-translate-y-1"
               >
-                <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
+                <div className="absolute inset-0 bg-amber-400/10 scale-0 group-hover:scale-100 rounded-full blur-md transition-all duration-300" />
+                <Icon className="w-5 h-5 sm:w-6 sm:h-6 relative z-10" />
               </a>
             ))}
           </div>
@@ -76,9 +108,10 @@ const Footer = () => {
       </div>
 
       {/* Divider */}
-      <div className="border-t border-white/10 mt-10 md:mt-12 pt-4 text-center text-gray-400 text-xs sm:text-sm">
-        &copy; {new Date().getFullYear()} Ethio Amber Import & Export. All
-        rights reserved.
+      <div className="mt-8 sm:mt-12 text-center border-t border-white/10 pt-4 sm:pt-6 text-gray-400 text-xs sm:text-sm">
+        &copy; {new Date().getFullYear()}{" "}
+        <span className="text-amber-400 font-medium">Ethio Amber Trading</span>.
+        All rights reserved.
       </div>
     </footer>
   );

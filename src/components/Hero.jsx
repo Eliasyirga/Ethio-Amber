@@ -7,7 +7,7 @@ const HeroSection = () => {
     "/SesameSeeds.jpg",
     "/Chickpeas.webp",
     "/Lentils.webp",
-    "/Sorghum.webp",
+    "/nuts.jpg",
   ];
 
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -72,9 +72,9 @@ const HeroSection = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 1 }}
         >
-          Ethio Amber bridges Ethiopian agriculture with the global market —
-          delivering grains, pulses, and oil-bearing seeds with excellence,
-          sustainability, and trust.
+          Ethio Amber Trading bridges Ethiopian agriculture with the global
+          market delivering grains, pulses, and oil-bearing seeds with
+          excellence, sustainability, and trust.
         </motion.p>
 
         <motion.div

@@ -31,9 +31,10 @@ const App = () => {
           <HeroSection />
           <Products />
           <Services />
-          <CallToAction />
+
           <About />
           <Contact />
+          <CallToAction />
           <Footer />
         </div>
       )}

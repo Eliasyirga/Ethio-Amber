@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FaBars, FaTimes, FaSeedling } from "react-icons/fa";
+import { FaBars, FaTimes } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 
 const NavBar = () => {
@@ -17,7 +17,7 @@ const NavBar = () => {
   const scrollToSection = (id) => {
     const section = document.getElementById(id);
     if (section) {
-      const yOffset = -80; // Adjust this value based on navbar height
+      const yOffset = -80;
       const y =
         section.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: "smooth" });
@@ -26,13 +26,13 @@ const NavBar = () => {
   };
 
   const mobileMenuVariants = {
-    hidden: { opacity: 0, y: -40 },
+    hidden: { opacity: 0, y: -50 },
     visible: {
       opacity: 1,
       y: 0,
       transition: { type: "spring", stiffness: 120, damping: 15 },
     },
-    exit: { opacity: 0, y: -40, transition: { duration: 0.3 } },
+    exit: { opacity: 0, y: -50, transition: { duration: 0.3 } },
   };
 
   const sections = ["home", "products", "services", "about", "contact"];
@@ -41,25 +41,29 @@ const NavBar = () => {
     <nav
       className={`fixed w-full top-0 left-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "backdrop-blur-xl shadow-xl bg-[#3E2723]/70 border-b border-white/10"
+          ? "backdrop-blur-xl bg-[#3E2723]/80 border-b border-white/20"
           : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
+          {/* Logo with Text */}
           <div
-            className="flex items-center space-x-2 cursor-pointer group"
+            className="flex items-center space-x-2 sm:space-x-3 cursor-pointer"
             onClick={() => scrollToSection("home")}
           >
-            <FaSeedling className="text-amber-500 text-3xl sm:text-4xl transition-transform duration-500 group-hover:rotate-12 drop-shadow-[0_0_15px_rgba(245,158,11,0.8)]" />
-            <span className="text-xl sm:text-2xl font-bold text-white group-hover:text-amber-500 transition-colors duration-300">
-              Ethio Amber
+            <img
+              src="/logo.webp"
+              alt="Ethio Amber Logo"
+              className="w-12 sm:w-16 md:w-20 lg:w-24 object-contain transition-transform duration-500 hover:scale-110"
+            />
+            <span className="text-white font-bold text-sm sm:text-base md:text-xl lg:text-2xl hover:text-amber-400 transition-colors duration-300 whitespace-nowrap">
+              Ethio Amber Trading
             </span>
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8 lg:space-x-10">
+          <div className="hidden md:flex items-center space-x-8 lg:space-x-12">
             {sections.map((section) => (
               <NavItem
                 key={section}
@@ -72,7 +76,7 @@ const NavBar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMenu}
-            className="md:hidden text-gray-200 hover:text-amber-500 transition-all duration-300 p-2 rounded-full hover:bg-white/10"
+            className="md:hidden text-gray-200 hover:text-amber-400 transition-all duration-300 p-2 rounded-full hover:bg-white/10"
             aria-label="Toggle menu"
           >
             {menuOpen ? <FaTimes size={26} /> : <FaBars size={26} />}
@@ -80,17 +84,17 @@ const NavBar = () => {
         </div>
       </div>
 
-      {/* Mobile Dropdown */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            className="md:hidden bg-[#3E2723]/95 backdrop-blur-xl border-t border-white/10 shadow-xl rounded-b-2xl"
+            className="md:hidden bg-[#3E2723]/95 backdrop-blur-xl border-t border-white/10 rounded-b-2xl"
             variants={mobileMenuVariants}
             initial="hidden"
             animate="visible"
             exit="exit"
           >
-            <div className="flex flex-col px-5 py-6 space-y-4 text-center">
+            <div className="flex flex-col px-6 py-6 space-y-4 text-center">
               {sections.map((section) => (
                 <NavItem
                   key={section}
@@ -106,11 +110,11 @@ const NavBar = () => {
   );
 };
 
-// Nav Item with animated underline
+// NavItem with animated underline & hover effect
 const NavItem = ({ label, onClick }) => (
   <button
     onClick={onClick}
-    className="relative font-semibold tracking-wide px-3 py-1 transition-all duration-300 text-white hover:text-amber-500 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:bg-amber-500 after:transition-all after:duration-300 hover:after:w-full"
+    className="relative font-semibold tracking-wide px-3 py-1 text-white hover:text-amber-400 transition-colors duration-300 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:bg-amber-400 after:w-0 after:transition-all after:duration-300 hover:after:w-full"
   >
     {label}
   </button>
