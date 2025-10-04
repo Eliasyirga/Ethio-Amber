@@ -49,15 +49,15 @@ const NavBar = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo with Text */}
           <div
-            className="flex items-center space-x-2 sm:space-x-3 cursor-pointer"
+            className="flex items-center space-x-3 cursor-pointer"
             onClick={() => scrollToSection("home")}
           >
             <img
               src="/logo.webp"
               alt="Ethio Amber Logo"
-              className="w-12 sm:w-16 md:w-20 lg:w-24 object-contain transition-transform duration-500 hover:scale-110"
+              className="w-16 sm:w-20 md:w-24 object-contain transition-transform duration-500 hover:scale-110 mt-1 sm:mt-1.5 md:mt-2"
             />
-            <span className="text-white font-bold text-sm sm:text-base md:text-xl lg:text-2xl hover:text-amber-400 transition-colors duration-300 whitespace-nowrap">
+            <span className="text-white font-bold text-lg sm:text-xl md:text-2xl hover:text-amber-400 transition-colors duration-300">
               Ethio Amber Trading
             </span>
           </div>
