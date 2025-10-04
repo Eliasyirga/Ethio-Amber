@@ -49,15 +49,15 @@ const NavBar = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo with Text */}
           <div
-            className="flex items-center space-x-3 cursor-pointer"
+            className="flex items-center space-x-2 sm:space-x-3 cursor-pointer"
             onClick={() => scrollToSection("home")}
           >
             <img
               src="/logo.webp"
               alt="Ethio Amber Logo"
-              className="w-16 sm:w-20 md:w-24 object-contain transition-transform duration-500 hover:scale-110 mt-1 sm:mt-1.5 md:mt-2"
+              className="w-14 sm:w-16 md:w-20 lg:w-24 object-contain transition-transform duration-500 hover:scale-110 mt-2"
             />
-            <span className="text-white font-bold text-lg sm:text-xl md:text-2xl hover:text-amber-400 transition-colors duration-300">
+            <span className="text-white font-bold text-base sm:text-xl md:text-2xl hover:text-amber-400 transition-colors duration-300 whitespace-nowrap">
               Ethio Amber Trading
             </span>
           </div>
@@ -84,11 +84,11 @@ const NavBar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu (full width) */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            className="md:hidden bg-[#3E2723]/95 backdrop-blur-xl border-t border-white/10 rounded-b-2xl"
+            className="md:hidden fixed top-16 left-0 w-full bg-[#3E2723]/95 backdrop-blur-xl border-t border-white/10 z-40"
             variants={mobileMenuVariants}
             initial="hidden"
             animate="visible"
