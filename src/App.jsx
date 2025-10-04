@@ -1,27 +1,40 @@
+import React, { useState, useEffect } from "react";
+
 import NavBar from "./components/Navbar";
 import HeroSection from "./components/Hero";
 import Products from "./components/Products";
 import Services from "./components/Services";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
 import CallToAction from "./components/CallToAction";
-import About from "./components/About";
+import Footer from "./components/Footer";
+import LoadingScreen from "./pages/LoadingScreen";
 
-function App() {
+const App = () => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate page load
+    const timer = setTimeout(() => setLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <div style={{ fontFamily: "'Poppins', sans-serif" }}>
-      <NavBar />
+    <>
+      {/* Loader */}
+      <LoadingScreen loading={loading} />
 
-      <HeroSection />
-
-      <Products />
-      <Services />
-      <CallToAction />
-      <About />
-      <Contact />
-      <Footer />
-    </div>
+      {/* Main content appears only when loading is false */}
+      {!loading && (
+        <div>
+          <NavBar />
+          <HeroSection />
+          <Products />
+          <Services />
+          <CallToAction />
+          <Footer />
+        </div>
+      )}
+    </>
   );
-}
+};
 
 export default App;
